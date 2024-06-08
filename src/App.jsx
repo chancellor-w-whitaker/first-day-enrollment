@@ -72,7 +72,7 @@ function App() {
           <ResponsiveContainer height={500}>
             <LineChart data={cleanedData}>
               <XAxis tickFormatter={categoryFormatter} dataKey={xAxisDataKey}>
-                <Label position="insideBottom" offset={0}>
+                <Label position="bottom" offset={0}>
                   {xAxisLabel}
                 </Label>
               </XAxis>
@@ -81,7 +81,7 @@ function App() {
                 domain={domain}
                 ticks={ticks}
               >
-                <Label position="insideLeft" angle={-90}>
+                <Label position="left" angle={-90} offset={0}>
                   {yAxisLabel}
                 </Label>
               </YAxis>

@@ -1,16 +1,5 @@
-const getBaseLog = (x, y) => {
-  return Math.log(y) / Math.log(x);
-};
-
-const getNextNumberFollowingXDivisibleByY = ({ x, y }) => {
-  return x % y === 0 ? x : x + (y - (x % y));
-};
-
-const getSecondLargestPowerOfXInY = ({ x, y }) => {
-  const flooredXLogOfY = Math.floor(getBaseLog(x, y)) - 1;
-
-  return Math.pow(x, flooredXLogOfY);
-};
+import { get1stNumberStartingFromXDivisibleByY } from "./get1stNumberStartingFromXDivisibleByY";
+import { get2ndLargestPowerOfXInY } from "./get2ndLargestPowerOfXInY";
 
 export const getTicksAndDomain = ({
   extraZoom = false,
@@ -24,7 +13,7 @@ export const getTicksAndDomain = ({
 
   const minDeductedByRange = dataMin - dataRange > 0 ? dataMin - dataRange : 0;
 
-  const secondLargestPowerOfXInY = getSecondLargestPowerOfXInY({
+  const secondLargestPowerOfXInY = get2ndLargestPowerOfXInY({
     y: dataRange,
     x: base,
   });
@@ -38,7 +27,7 @@ export const getTicksAndDomain = ({
   const distanceBetweenBounds = upperBound - lowerBound;
 
   const minimumDistanceForEquidistantTicks =
-    getNextNumberFollowingXDivisibleByY({
+    get1stNumberStartingFromXDivisibleByY({
       x: distanceBetweenBounds,
       y: tickCount - 1,
     });
