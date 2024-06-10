@@ -11,3 +11,7 @@
 .recharts-surface {
   overflow: visible;
 }
+
+.text-anchor-middle {
+  text-anchor: middle;
+}

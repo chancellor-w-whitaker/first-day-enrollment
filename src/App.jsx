@@ -26,10 +26,26 @@ import { useCSV } from "./hooks/useCSV";
 // ! fix axis label positions
 // ! add "as of day" and "difference" to tooltip
 
+const standardLineStroke = { width: 2 };
+
+const referenceLineStroke = { dasharray: "3 4 5 2", width: 1 };
+
 const constants = {
   lines: [
-    { dataKey: "enrolled", stroke: "#009681", strokeWidth: 2 },
-    { dataKey: "official", stroke: "#861f41", strokeWidth: 2 },
+    {
+      strokeWidth: standardLineStroke.width,
+      dot: { fill: "#009681" },
+      dataKey: "enrolled",
+      stroke: "#009681",
+      activeDot: false,
+    },
+    {
+      strokeWidth: standardLineStroke.width,
+      dot: { fill: "#861f41" },
+      dataKey: "official",
+      stroke: "#861f41",
+      activeDot: false,
+    },
   ],
   xAxisDataKey: "term_desc",
   yAxisLabel: "Enrollment",
@@ -71,17 +87,29 @@ function App() {
         <Section>
           <ResponsiveContainer height={500}>
             <LineChart data={cleanedData}>
-              <XAxis tickFormatter={categoryFormatter} dataKey={xAxisDataKey}>
+              <XAxis
+                tickFormatter={categoryFormatter}
+                dataKey={xAxisDataKey}
+                axisLine={false}
+                tickLine={false}
+              >
                 <Label position="bottom" offset={0}>
                   {xAxisLabel}
                 </Label>
               </XAxis>
               <YAxis
                 tickFormatter={valueFormatter}
+                axisLine={false}
+                tickLine={false}
                 domain={domain}
                 ticks={ticks}
               >
-                <Label position="left" angle={-90} offset={0}>
+                <Label
+                  className="text-anchor-middle"
+                  position="left"
+                  angle={-90}
+                  offset={0}
+                >
                   {yAxisLabel}
                 </Label>
               </YAxis>
@@ -111,7 +139,10 @@ const getReferenceLines = (data) =>
 
     const y = average;
 
-    const [strokeWidth, strokeDasharray] = [2, "3 3"];
+    const [strokeWidth, strokeDasharray] = [
+      referenceLineStroke.width,
+      referenceLineStroke.dasharray,
+    ];
 
     const formattedAverage = valueFormatter(Math.round(average));
 
