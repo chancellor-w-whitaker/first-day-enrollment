@@ -15,3 +15,8 @@
 .text-anchor-middle {
   text-anchor: middle;
 }
+
+.recharts-reference-line,
+.recharts-cartesian-axis-ticks {
+  font-size: small;
+}
