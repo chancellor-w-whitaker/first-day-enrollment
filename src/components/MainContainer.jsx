@@ -1,4 +1,4 @@
-import { getFullClassName } from "../js/getFullClassName";
+import { getFullClassName } from "../helpers/getFullClassName";
 
 export const MainContainer = ({ className = "", ...rest }) => {
   const defaultClassName = "container";

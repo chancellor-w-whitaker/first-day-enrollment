@@ -10,25 +10,26 @@ import {
 } from "recharts";
 import { useMemo } from "react";
 
-import { nullifyEmptyStringValues } from "./js/nullifyEmptyStringValues";
-import { getEquidistantTicks } from "./js/getEquidistantTicks";
+import { nullifyEmptyStringValues } from "./helpers/nullifyEmptyStringValues";
+import { getEquidistantTicks } from "./helpers/getEquidistantTicks";
+import { getReferenceLines } from "./helpers/getReferenceLines";
+import { getNumericValues } from "./helpers/getNumericValues";
 import { MainContainer } from "./components/MainContainer";
-import { getReferenceLines } from "./js/getReferenceLines";
-import { getNumericValues } from "./js/getNumericValues";
+import { tooltip } from "./other/options/tooltip";
+import { legend } from "./other/options/legend";
 import { Section } from "./components/Section";
-import { options } from "./constants/options";
-import { helpers } from "./constants/helpers";
+import { xAxis } from "./other/options/xAxis";
+import { yAxis } from "./other/options/yAxis";
+import { lines } from "./other/options/lines";
 import { useCSV } from "./hooks/useCSV";
+import { constants } from "./constants";
 
 // ! add "as of day" and "difference" to tooltip
 
-const { lineColors, maxZoom, height, csvUrl } = helpers;
-
-const { tooltip, legend, xAxis, yAxis, lines } = options;
+const { lineColors, maxZoom, height, csvUrl } = constants;
 
 const lineDataKeys = Object.keys(lineColors);
 
-// figure out which api props of legend component influence actual svg output (in order to make custom legend renderer with filled in dots)
 // increase width of y axis by some amount and height of x axis by some amount
 
 function App() {
@@ -55,24 +56,23 @@ function App() {
 
   return (
     <>
-      <MainContainer>
-        <Section>
-          <ResponsiveContainer height={height}>
-            <LineChart data={cleanedData}>
-              <XAxis {...xAxis}></XAxis>
-              <YAxis {...yAxis} domain={domain} ticks={ticks}></YAxis>
-              <Tooltip {...tooltip}></Tooltip>
-              <Legend {...legend}></Legend>
-              {lines.map((line, index) => (
-                <Line {...line} key={index}></Line>
-              ))}
-              {referenceLines.map((line, index) => (
-                <ReferenceLine {...line} key={index}></ReferenceLine>
-              ))}
-            </LineChart>
-          </ResponsiveContainer>
-        </Section>
-      </MainContainer>
+      <Section>
+        <h2>New Freshmen: First Day Enrollment vs Officially Reported</h2>
+        <ResponsiveContainer height={height}>
+          <LineChart data={cleanedData}>
+            <XAxis {...xAxis}></XAxis>
+            <YAxis {...yAxis} domain={domain} ticks={ticks}></YAxis>
+            <Tooltip {...tooltip}></Tooltip>
+            <Legend {...legend}></Legend>
+            {lines.map((line, index) => (
+              <Line {...line} key={index}></Line>
+            ))}
+            {referenceLines.map((line, index) => (
+              <ReferenceLine {...line} key={index}></ReferenceLine>
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </Section>
     </>
   );
 }

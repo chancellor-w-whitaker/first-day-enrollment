@@ -12,11 +12,24 @@
   overflow: visible;
 }
 
-.text-anchor-middle {
-  text-anchor: middle;
-}
-
 .recharts-reference-line,
 .recharts-cartesian-axis-ticks {
   font-size: small;
+}
+
+.page > div {
+  margin: 0 !important;
+}
+
+.page.offset-xxl-1 {
+  margin-left: 0;
+}
+
+.page.col-xxl-10 {
+  width: 100%;
+}
+
+.page {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }

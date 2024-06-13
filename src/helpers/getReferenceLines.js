@@ -1,7 +1,6 @@
-import { options } from "../constants/options";
+import { referenceLine } from "../other/options/referenceLine";
+import { lines } from "../other/options/lines";
 import { findAverage } from "./findAverage";
-
-const { referenceLine, lines } = options;
 
 export const getReferenceLines = (data) =>
   lines.map(({ dataKey, stroke }) => {
