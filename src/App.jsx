@@ -56,23 +56,20 @@ function App() {
 
   return (
     <>
-      <Section>
-        <h2>New Freshmen: First Day Enrollment vs Officially Reported</h2>
-        <ResponsiveContainer height={height}>
-          <LineChart data={cleanedData}>
-            <XAxis {...xAxis}></XAxis>
-            <YAxis {...yAxis} domain={domain} ticks={ticks}></YAxis>
-            <Tooltip {...tooltip}></Tooltip>
-            <Legend {...legend}></Legend>
-            {lines.map((line, index) => (
-              <Line {...line} key={index}></Line>
-            ))}
-            {referenceLines.map((line, index) => (
-              <ReferenceLine {...line} key={index}></ReferenceLine>
-            ))}
-          </LineChart>
-        </ResponsiveContainer>
-      </Section>
+      <ResponsiveContainer height={height}>
+        <LineChart data={cleanedData}>
+          <XAxis {...xAxis}></XAxis>
+          <YAxis {...yAxis} domain={domain} ticks={ticks}></YAxis>
+          <Tooltip {...tooltip}></Tooltip>
+          <Legend {...legend}></Legend>
+          {lines.map((line, index) => (
+            <Line {...line} key={index}></Line>
+          ))}
+          {referenceLines.map((line, index) => (
+            <ReferenceLine {...line} key={index}></ReferenceLine>
+          ))}
+        </LineChart>
+      </ResponsiveContainer>
     </>
   );
 }

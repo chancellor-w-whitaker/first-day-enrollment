@@ -7,7 +7,7 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Wrapper>
+    <Wrapper heading="New Freshmen: First Day Enrollment vs Officially Reported">
       <App />
     </Wrapper>
   </React.StrictMode>
